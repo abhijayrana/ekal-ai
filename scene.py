@@ -9,7 +9,7 @@ class AdditionIntro(Scene):
     def construct(self):
         # Intro
         intro = Text("आइए जोड़ सीखें!", color=BLUE).scale(1.5)
-        self.play(Write(intro), run_time=1)
+        self.play(Write(intro), run_time=2)
         self.wait(2)
         self.remove(intro)
 
@@ -22,29 +22,31 @@ class AdditionIntro(Scene):
         orange_blocks.arrange(RIGHT, buff=0.5)
         orange_blocks.next_to(blue_blocks, DOWN, buff=1)
 
-        self.play(LaggedStart(*[FadeIn(block) for block in blue_blocks], lag_ratio=0.5), run_time=1)
+        self.play(LaggedStart(*[FadeIn(block) for block in blue_blocks], lag_ratio=0.5), run_time=4)
+        self.wait(0.5)
 
         blue_counts = []
         for i, block in enumerate(blue_blocks, start=1):
             count = Integer(i)
             count.move_to(block.get_center() + UP * 0.7)
             blue_counts.append(count)
-            self.play(block.animate.set_color(YELLOW), run_time=0.3)
+            self.play(block.animate.set_color(YELLOW), run_time=0.4)
             self.play(Write(count), run_time=0.3)
             self.wait(0.2)
-            self.play(block.animate.set_color(BLUE), run_time=0.3)
+            self.play(block.animate.set_color(BLUE), run_time=0.4)
 
-        self.play(LaggedStart(*[FadeIn(block) for block in orange_blocks], lag_ratio=0.5), run_time=1)
+        self.play(LaggedStart(*[FadeIn(block) for block in orange_blocks], lag_ratio=0.5), run_time=3)
+        self.wait(0.5)
 
         orange_counts = []
         for i, block in enumerate(orange_blocks, start=1):
             count = Integer(i)
             count.move_to(block.get_center() + UP * 0.7)
             orange_counts.append(count)
-            self.play(block.animate.set_color(YELLOW), run_time=0.3)
+            self.play(block.animate.set_color(YELLOW), run_time=0.4)
             self.play(Write(count), run_time=0.3)
             self.wait(0.2)
-            self.play(block.animate.set_color(ORANGE), run_time=0.3)
+            self.play(block.animate.set_color(ORANGE), run_time=0.4)
 
         self.play(*[FadeOut(count) for count in blue_counts[:-1]], run_time=1)
         self.play(*[FadeOut(count) for count in orange_counts[:-1]], run_time=1)
